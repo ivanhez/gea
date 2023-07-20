@@ -5,8 +5,9 @@ cmake_policy(SET CMP0009 NEW)
 # SOURCES at CMakeLists.txt:11 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "C:/Users/Admin/Desktop/pong/src/*.cpp")
 set(OLD_GLOB
-  "C:/Users/Admin/Desktop/pong/src/Game.cpp"
-  "C:/Users/Admin/Desktop/pong/src/Pong.cpp"
+  "C:/Users/Admin/Desktop/pong/src/Game/Game.cpp"
+  "C:/Users/Admin/Desktop/pong/src/Pong/Pong.cpp"
+  "C:/Users/Admin/Desktop/pong/src/Scene/Scene.cpp"
   "C:/Users/Admin/Desktop/pong/src/main.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")

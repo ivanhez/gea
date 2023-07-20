@@ -84,54 +84,71 @@ CMakeFiles/PONG.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PONG.dir/src/main.cpp.s"
 	C:/msys64/mingw64/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:/Users/Admin/Desktop/pong/src/main.cpp -o CMakeFiles/PONG.dir/src/main.cpp.s
 
-CMakeFiles/PONG.dir/src/Game.cpp.obj: CMakeFiles/PONG.dir/flags.make
-CMakeFiles/PONG.dir/src/Game.cpp.obj: CMakeFiles/PONG.dir/includes_CXX.rsp
-CMakeFiles/PONG.dir/src/Game.cpp.obj: C:/Users/Admin/Desktop/pong/src/Game.cpp
-CMakeFiles/PONG.dir/src/Game.cpp.obj: CMakeFiles/PONG.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:/Users/Admin/Desktop/pong/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/PONG.dir/src/Game.cpp.obj"
-	C:/msys64/mingw64/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PONG.dir/src/Game.cpp.obj -MF CMakeFiles/PONG.dir/src/Game.cpp.obj.d -o CMakeFiles/PONG.dir/src/Game.cpp.obj -c C:/Users/Admin/Desktop/pong/src/Game.cpp
+CMakeFiles/PONG.dir/src/Game/Game.cpp.obj: CMakeFiles/PONG.dir/flags.make
+CMakeFiles/PONG.dir/src/Game/Game.cpp.obj: CMakeFiles/PONG.dir/includes_CXX.rsp
+CMakeFiles/PONG.dir/src/Game/Game.cpp.obj: C:/Users/Admin/Desktop/pong/src/Game/Game.cpp
+CMakeFiles/PONG.dir/src/Game/Game.cpp.obj: CMakeFiles/PONG.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:/Users/Admin/Desktop/pong/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/PONG.dir/src/Game/Game.cpp.obj"
+	C:/msys64/mingw64/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PONG.dir/src/Game/Game.cpp.obj -MF CMakeFiles/PONG.dir/src/Game/Game.cpp.obj.d -o CMakeFiles/PONG.dir/src/Game/Game.cpp.obj -c C:/Users/Admin/Desktop/pong/src/Game/Game.cpp
 
-CMakeFiles/PONG.dir/src/Game.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/PONG.dir/src/Game.cpp.i"
-	C:/msys64/mingw64/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:/Users/Admin/Desktop/pong/src/Game.cpp > CMakeFiles/PONG.dir/src/Game.cpp.i
+CMakeFiles/PONG.dir/src/Game/Game.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/PONG.dir/src/Game/Game.cpp.i"
+	C:/msys64/mingw64/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:/Users/Admin/Desktop/pong/src/Game/Game.cpp > CMakeFiles/PONG.dir/src/Game/Game.cpp.i
 
-CMakeFiles/PONG.dir/src/Game.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PONG.dir/src/Game.cpp.s"
-	C:/msys64/mingw64/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:/Users/Admin/Desktop/pong/src/Game.cpp -o CMakeFiles/PONG.dir/src/Game.cpp.s
+CMakeFiles/PONG.dir/src/Game/Game.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PONG.dir/src/Game/Game.cpp.s"
+	C:/msys64/mingw64/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:/Users/Admin/Desktop/pong/src/Game/Game.cpp -o CMakeFiles/PONG.dir/src/Game/Game.cpp.s
 
-CMakeFiles/PONG.dir/src/Pong.cpp.obj: CMakeFiles/PONG.dir/flags.make
-CMakeFiles/PONG.dir/src/Pong.cpp.obj: CMakeFiles/PONG.dir/includes_CXX.rsp
-CMakeFiles/PONG.dir/src/Pong.cpp.obj: C:/Users/Admin/Desktop/pong/src/Pong.cpp
-CMakeFiles/PONG.dir/src/Pong.cpp.obj: CMakeFiles/PONG.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:/Users/Admin/Desktop/pong/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/PONG.dir/src/Pong.cpp.obj"
-	C:/msys64/mingw64/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PONG.dir/src/Pong.cpp.obj -MF CMakeFiles/PONG.dir/src/Pong.cpp.obj.d -o CMakeFiles/PONG.dir/src/Pong.cpp.obj -c C:/Users/Admin/Desktop/pong/src/Pong.cpp
+CMakeFiles/PONG.dir/src/Pong/Pong.cpp.obj: CMakeFiles/PONG.dir/flags.make
+CMakeFiles/PONG.dir/src/Pong/Pong.cpp.obj: CMakeFiles/PONG.dir/includes_CXX.rsp
+CMakeFiles/PONG.dir/src/Pong/Pong.cpp.obj: C:/Users/Admin/Desktop/pong/src/Pong/Pong.cpp
+CMakeFiles/PONG.dir/src/Pong/Pong.cpp.obj: CMakeFiles/PONG.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:/Users/Admin/Desktop/pong/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/PONG.dir/src/Pong/Pong.cpp.obj"
+	C:/msys64/mingw64/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PONG.dir/src/Pong/Pong.cpp.obj -MF CMakeFiles/PONG.dir/src/Pong/Pong.cpp.obj.d -o CMakeFiles/PONG.dir/src/Pong/Pong.cpp.obj -c C:/Users/Admin/Desktop/pong/src/Pong/Pong.cpp
 
-CMakeFiles/PONG.dir/src/Pong.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/PONG.dir/src/Pong.cpp.i"
-	C:/msys64/mingw64/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:/Users/Admin/Desktop/pong/src/Pong.cpp > CMakeFiles/PONG.dir/src/Pong.cpp.i
+CMakeFiles/PONG.dir/src/Pong/Pong.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/PONG.dir/src/Pong/Pong.cpp.i"
+	C:/msys64/mingw64/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:/Users/Admin/Desktop/pong/src/Pong/Pong.cpp > CMakeFiles/PONG.dir/src/Pong/Pong.cpp.i
 
-CMakeFiles/PONG.dir/src/Pong.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PONG.dir/src/Pong.cpp.s"
-	C:/msys64/mingw64/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:/Users/Admin/Desktop/pong/src/Pong.cpp -o CMakeFiles/PONG.dir/src/Pong.cpp.s
+CMakeFiles/PONG.dir/src/Pong/Pong.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PONG.dir/src/Pong/Pong.cpp.s"
+	C:/msys64/mingw64/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:/Users/Admin/Desktop/pong/src/Pong/Pong.cpp -o CMakeFiles/PONG.dir/src/Pong/Pong.cpp.s
+
+CMakeFiles/PONG.dir/src/Scene/Scene.cpp.obj: CMakeFiles/PONG.dir/flags.make
+CMakeFiles/PONG.dir/src/Scene/Scene.cpp.obj: CMakeFiles/PONG.dir/includes_CXX.rsp
+CMakeFiles/PONG.dir/src/Scene/Scene.cpp.obj: C:/Users/Admin/Desktop/pong/src/Scene/Scene.cpp
+CMakeFiles/PONG.dir/src/Scene/Scene.cpp.obj: CMakeFiles/PONG.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:/Users/Admin/Desktop/pong/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/PONG.dir/src/Scene/Scene.cpp.obj"
+	C:/msys64/mingw64/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PONG.dir/src/Scene/Scene.cpp.obj -MF CMakeFiles/PONG.dir/src/Scene/Scene.cpp.obj.d -o CMakeFiles/PONG.dir/src/Scene/Scene.cpp.obj -c C:/Users/Admin/Desktop/pong/src/Scene/Scene.cpp
+
+CMakeFiles/PONG.dir/src/Scene/Scene.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/PONG.dir/src/Scene/Scene.cpp.i"
+	C:/msys64/mingw64/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:/Users/Admin/Desktop/pong/src/Scene/Scene.cpp > CMakeFiles/PONG.dir/src/Scene/Scene.cpp.i
+
+CMakeFiles/PONG.dir/src/Scene/Scene.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PONG.dir/src/Scene/Scene.cpp.s"
+	C:/msys64/mingw64/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:/Users/Admin/Desktop/pong/src/Scene/Scene.cpp -o CMakeFiles/PONG.dir/src/Scene/Scene.cpp.s
 
 # Object files for target PONG
 PONG_OBJECTS = \
 "CMakeFiles/PONG.dir/src/main.cpp.obj" \
-"CMakeFiles/PONG.dir/src/Game.cpp.obj" \
-"CMakeFiles/PONG.dir/src/Pong.cpp.obj"
+"CMakeFiles/PONG.dir/src/Game/Game.cpp.obj" \
+"CMakeFiles/PONG.dir/src/Pong/Pong.cpp.obj" \
+"CMakeFiles/PONG.dir/src/Scene/Scene.cpp.obj"
 
 # External object files for target PONG
 PONG_EXTERNAL_OBJECTS =
 
 PONG.exe: CMakeFiles/PONG.dir/src/main.cpp.obj
-PONG.exe: CMakeFiles/PONG.dir/src/Game.cpp.obj
-PONG.exe: CMakeFiles/PONG.dir/src/Pong.cpp.obj
+PONG.exe: CMakeFiles/PONG.dir/src/Game/Game.cpp.obj
+PONG.exe: CMakeFiles/PONG.dir/src/Pong/Pong.cpp.obj
+PONG.exe: CMakeFiles/PONG.dir/src/Scene/Scene.cpp.obj
 PONG.exe: CMakeFiles/PONG.dir/build.make
 PONG.exe: C:/Program\ Files\ (x86)/SDL2/lib/libSDL2main.a
 PONG.exe: C:/Program\ Files\ (x86)/SDL2/lib/libSDL2.dll.a
 PONG.exe: CMakeFiles/PONG.dir/linkLibs.rsp
 PONG.exe: CMakeFiles/PONG.dir/objects1.rsp
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:/Users/Admin/Desktop/pong/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable PONG.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:/Users/Admin/Desktop/pong/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable PONG.exe"
 	"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/PONG.dir/objects.a
 	C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/PONG.dir/objects.a @CMakeFiles/PONG.dir/objects1.rsp
 	C:/msys64/mingw64/bin/c++.exe -Wl,--whole-archive CMakeFiles/PONG.dir/objects.a -Wl,--no-whole-archive -o PONG.exe -Wl,--out-implib,libPONG.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/PONG.dir/linkLibs.rsp

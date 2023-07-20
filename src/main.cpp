@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Pong.h"
+#include "Pong/Pong.h"
 
 int main(int argv, char **args)
 {

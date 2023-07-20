@@ -1,7 +1,6 @@
-// #include <print.h>
+#include <Print.h>
 #include <SDL2/SDL.h>
 #include "Pong.h"
-#include "../include/print.h"
 
 SDL_Rect ball;
 SDL_Rect paddle;
@@ -132,6 +131,7 @@ void Pong::handleEvents()
     while (SDL_PollEvent(&event) != 0)
     {
 
+
         if (event.type == SDL_QUIT)
         {
             isRunning = false;
@@ -139,6 +139,7 @@ void Pong::handleEvents()
 
         if (event.type == SDL_KEYDOWN)
         {
+            print(event.key.keysym.sym);
             switch (event.key.keysym.sym)
             {
             case SDLK_UP:

@@ -130,53 +130,77 @@ PONG/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PONG.dir/build.make CMakeFiles/PONG.dir/build
 .PHONY : PONG/fast
 
-src/Game.obj: src/Game.cpp.obj
-.PHONY : src/Game.obj
+src/Game/Game.obj: src/Game/Game.cpp.obj
+.PHONY : src/Game/Game.obj
 
 # target to build an object file
-src/Game.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/PONG.dir/build.make CMakeFiles/PONG.dir/src/Game.cpp.obj
-.PHONY : src/Game.cpp.obj
+src/Game/Game.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PONG.dir/build.make CMakeFiles/PONG.dir/src/Game/Game.cpp.obj
+.PHONY : src/Game/Game.cpp.obj
 
-src/Game.i: src/Game.cpp.i
-.PHONY : src/Game.i
+src/Game/Game.i: src/Game/Game.cpp.i
+.PHONY : src/Game/Game.i
 
 # target to preprocess a source file
-src/Game.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/PONG.dir/build.make CMakeFiles/PONG.dir/src/Game.cpp.i
-.PHONY : src/Game.cpp.i
+src/Game/Game.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PONG.dir/build.make CMakeFiles/PONG.dir/src/Game/Game.cpp.i
+.PHONY : src/Game/Game.cpp.i
 
-src/Game.s: src/Game.cpp.s
-.PHONY : src/Game.s
+src/Game/Game.s: src/Game/Game.cpp.s
+.PHONY : src/Game/Game.s
 
 # target to generate assembly for a file
-src/Game.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/PONG.dir/build.make CMakeFiles/PONG.dir/src/Game.cpp.s
-.PHONY : src/Game.cpp.s
+src/Game/Game.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PONG.dir/build.make CMakeFiles/PONG.dir/src/Game/Game.cpp.s
+.PHONY : src/Game/Game.cpp.s
 
-src/Pong.obj: src/Pong.cpp.obj
-.PHONY : src/Pong.obj
+src/Pong/Pong.obj: src/Pong/Pong.cpp.obj
+.PHONY : src/Pong/Pong.obj
 
 # target to build an object file
-src/Pong.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/PONG.dir/build.make CMakeFiles/PONG.dir/src/Pong.cpp.obj
-.PHONY : src/Pong.cpp.obj
+src/Pong/Pong.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PONG.dir/build.make CMakeFiles/PONG.dir/src/Pong/Pong.cpp.obj
+.PHONY : src/Pong/Pong.cpp.obj
 
-src/Pong.i: src/Pong.cpp.i
-.PHONY : src/Pong.i
+src/Pong/Pong.i: src/Pong/Pong.cpp.i
+.PHONY : src/Pong/Pong.i
 
 # target to preprocess a source file
-src/Pong.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/PONG.dir/build.make CMakeFiles/PONG.dir/src/Pong.cpp.i
-.PHONY : src/Pong.cpp.i
+src/Pong/Pong.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PONG.dir/build.make CMakeFiles/PONG.dir/src/Pong/Pong.cpp.i
+.PHONY : src/Pong/Pong.cpp.i
 
-src/Pong.s: src/Pong.cpp.s
-.PHONY : src/Pong.s
+src/Pong/Pong.s: src/Pong/Pong.cpp.s
+.PHONY : src/Pong/Pong.s
 
 # target to generate assembly for a file
-src/Pong.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/PONG.dir/build.make CMakeFiles/PONG.dir/src/Pong.cpp.s
-.PHONY : src/Pong.cpp.s
+src/Pong/Pong.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PONG.dir/build.make CMakeFiles/PONG.dir/src/Pong/Pong.cpp.s
+.PHONY : src/Pong/Pong.cpp.s
+
+src/Scene/Scene.obj: src/Scene/Scene.cpp.obj
+.PHONY : src/Scene/Scene.obj
+
+# target to build an object file
+src/Scene/Scene.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PONG.dir/build.make CMakeFiles/PONG.dir/src/Scene/Scene.cpp.obj
+.PHONY : src/Scene/Scene.cpp.obj
+
+src/Scene/Scene.i: src/Scene/Scene.cpp.i
+.PHONY : src/Scene/Scene.i
+
+# target to preprocess a source file
+src/Scene/Scene.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PONG.dir/build.make CMakeFiles/PONG.dir/src/Scene/Scene.cpp.i
+.PHONY : src/Scene/Scene.cpp.i
+
+src/Scene/Scene.s: src/Scene/Scene.cpp.s
+.PHONY : src/Scene/Scene.s
+
+# target to generate assembly for a file
+src/Scene/Scene.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PONG.dir/build.make CMakeFiles/PONG.dir/src/Scene/Scene.cpp.s
+.PHONY : src/Scene/Scene.cpp.s
 
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
@@ -211,12 +235,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... PONG"
-	@echo "... src/Game.obj"
-	@echo "... src/Game.i"
-	@echo "... src/Game.s"
-	@echo "... src/Pong.obj"
-	@echo "... src/Pong.i"
-	@echo "... src/Pong.s"
+	@echo "... src/Game/Game.obj"
+	@echo "... src/Game/Game.i"
+	@echo "... src/Game/Game.s"
+	@echo "... src/Pong/Pong.obj"
+	@echo "... src/Pong/Pong.i"
+	@echo "... src/Pong/Pong.s"
+	@echo "... src/Scene/Scene.obj"
+	@echo "... src/Scene/Scene.i"
+	@echo "... src/Scene/Scene.s"
 	@echo "... src/main.obj"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

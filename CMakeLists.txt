@@ -24,6 +24,10 @@ add_executable(
 target_include_directories(
   ${PROJECT_NAME}
   PRIVATE ${PROJECT_SOURCE_DIR}/include
+  PRIVATE ${PROJECT_SOURCE_DIR}/src/Game
+  PRIVATE ${PROJECT_SOURCE_DIR}/src/Pong
+  PRIVATE ${PROJECT_SOURCE_DIR}/src/ECS
+  PRIVATE ${PROJECT_SOURCE_DIR}/src/Scene
   PUBLIC ${SDL2_INCLUDE_DIRS}
 )
 

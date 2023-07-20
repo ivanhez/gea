@@ -1,5 +1,6 @@
-CMakeFiles/PONG.dir/src/main.cpp.obj: \
- C:/Users/Admin/Desktop/pong/src/main.cpp \
+CMakeFiles/PONG.dir/src/Pong/Pong.cpp.obj: \
+ C:/Users/Admin/Desktop/pong/src/Pong/Pong.cpp \
+ C:/Users/Admin/Desktop/pong/include/Print.h \
  C:/msys64/mingw64/include/c++/13.1.0/iostream \
  C:/msys64/mingw64/include/c++/13.1.0/bits/requires_hosted.h \
  C:/msys64/mingw64/include/c++/13.1.0/x86_64-w64-mingw32/bits/c++config.h \
@@ -144,8 +145,6 @@ CMakeFiles/PONG.dir/src/main.cpp.obj: \
  C:/msys64/mingw64/include/c++/13.1.0/bits/ostream.tcc \
  C:/msys64/mingw64/include/c++/13.1.0/istream \
  C:/msys64/mingw64/include/c++/13.1.0/bits/istream.tcc \
- C:/Users/Admin/Desktop/pong/src/Pong/Pong.h \
- C:/Users/Admin/Desktop/pong/src/Game/Game.h \
  C:/Program\ Files\ (x86)/SDL2/include/SDL2/SDL.h \
  C:/Program\ Files\ (x86)/SDL2/include/SDL2/SDL_main.h \
  C:/Program\ Files\ (x86)/SDL2/include/SDL2/SDL_stdinc.h \
@@ -323,4 +322,6 @@ CMakeFiles/PONG.dir/src/main.cpp.obj: \
  C:/Program\ Files\ (x86)/SDL2/include/SDL2/SDL_timer.h \
  C:/Program\ Files\ (x86)/SDL2/include/SDL2/SDL_version.h \
  C:/Program\ Files\ (x86)/SDL2/include/SDL2/SDL_locale.h \
- C:/Program\ Files\ (x86)/SDL2/include/SDL2/SDL_misc.h
+ C:/Program\ Files\ (x86)/SDL2/include/SDL2/SDL_misc.h \
+ C:/Users/Admin/Desktop/pong/src/Pong/Pong.h \
+ C:/Users/Admin/Desktop/pong/src/Game/Game.h
