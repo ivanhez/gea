@@ -669,6 +669,8 @@ CMakeFiles/PONG.dir/src/Pong/Pong.cpp.obj: C:/Users/Admin/Desktop/pong/src/Pong/
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/xsavesintrin.h \
   C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/xtestintrin.h
 
+CMakeFiles/PONG.dir/src/Scene/Scene.cpp.obj: C:/Users/Admin/Desktop/pong/src/Scene/Scene.cpp
+
 CMakeFiles/PONG.dir/src/main.cpp.obj: C:/Users/Admin/Desktop/pong/src/main.cpp \
   C:/Program\ Files\ (x86)/SDL2/include/SDL2/SDL.h \
   C:/Program\ Files\ (x86)/SDL2/include/SDL2/SDL_assert.h \
@@ -1673,5 +1675,7 @@ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/xsaveoptintrin.h:
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/xtestintrin.h:
 
 C:/Users/Admin/Desktop/pong/src/Pong/Pong.h:
+
+C:/Users/Admin/Desktop/pong/src/Scene/Scene.cpp:
 
 C:/Users/Admin/Desktop/pong/src/main.cpp:

@@ -91,6 +91,13 @@ void Pong::update()
         ball_speed_x *= -1;
     }
 
+    if (ball.x <= enemy_paddle.x + enemy_paddle.w && ball.x + ball.w >= enemy_paddle.x &&
+        ball.y <= enemy_paddle.y + enemy_paddle.h && ball.y + ball.h >= enemy_paddle.y)
+    {
+        ball_speed_x++;
+        ball_speed_x *= -1;
+    }
+
     ball.x += ball_speed_x;
     ball.y += ball_speed_y;
 }
@@ -121,25 +128,16 @@ void Pong::handleEvents()
     //     enemy_paddle.y -= 5;
     // }
 
-    if (ball.x <= enemy_paddle.x + enemy_paddle.w && ball.x + ball.w >= enemy_paddle.x &&
-        ball.y <= enemy_paddle.y + enemy_paddle.h && ball.y + ball.h >= enemy_paddle.y)
-    {
-        ball_speed_x *= -1;
-    }
-
     SDL_Event event;
     while (SDL_PollEvent(&event) != 0)
     {
-
-
         if (event.type == SDL_QUIT)
         {
             isRunning = false;
+            break;
         }
-
         if (event.type == SDL_KEYDOWN)
         {
-            print(event.key.keysym.sym);
             switch (event.key.keysym.sym)
             {
             case SDLK_UP:
