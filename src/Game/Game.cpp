@@ -1,6 +1,6 @@
 #include <iostream>
 #include <SDL2/SDL.h>
-// #include <print.h>
+#include <print.h>
 #include "Game.h"
 
 Game::Game(const char *name, int width, int height)
@@ -18,7 +18,8 @@ Game::Game(const char *name, int width, int height)
         window = SDL_CreateWindow(name, 200, 50, width, height, 0);
         renderer = SDL_CreateRenderer(window, 0, 0);
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 1);
-        printf("GAME START");
+        printf("GAME START\n");
+
 
         isRunning = true;
     }
@@ -76,14 +77,14 @@ void Game::handleEvents()
 {
     // print("Game Handling events...");
 
-    SDL_Event event;
-    while (SDL_PollEvent(&event) != 0)
-    {
-        if (event.type == SDL_QUIT)
-        {
-            isRunning = false;
-        }
-    }
+    // SDL_Event event;
+    // while (SDL_PollEvent(&event) != 0)
+    // {
+    //     if (event.type == SDL_QUIT)
+    //     {
+    //         isRunning = false;
+    //     }
+    // }
 }
 
 bool Game::running()

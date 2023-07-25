@@ -75,27 +75,29 @@ void Pong::update()
     {
         ball.y = 1;
         ball_speed_y++;
-        ball_speed_y *= -1;
+        ball_speed_y *= -1.1;
     }
     if (ball.y >= screen_height - ball.h)
     {
         ball.y = screen_height - ball.h + 1;
         ball_speed_y++;
-        ball_speed_y *= -1;
+        ball_speed_y *= -1.1;
     }
 
     if (ball.x + ball.w >= paddle.x && ball.x <= paddle.x + paddle.w &&
         ball.y + ball.h >= paddle.y && ball.y <= paddle.y + paddle.h)
     {
+        ball.x = ball.x - 1;
         ball_speed_x++;
-        ball_speed_x *= -1;
+        ball_speed_x *= -1.1;
     }
 
     if (ball.x <= enemy_paddle.x + enemy_paddle.w && ball.x + ball.w >= enemy_paddle.x &&
         ball.y <= enemy_paddle.y + enemy_paddle.h && ball.y + ball.h >= enemy_paddle.y)
     {
+        ball.x = 20;
         ball_speed_x++;
-        ball_speed_x *= -1;
+        ball_speed_x *= -1.1;
     }
 
     ball.x += ball_speed_x;
@@ -116,6 +118,30 @@ void Pong::render()
     SDL_RenderPresent(renderer);
 }
 
+void Pong::handleKeyEvents(SDL_Keycode key)
+{
+    // vprint(key);
+    switch (key)
+    {
+    case SDLK_UP:
+        if (paddle.y > 0)
+            paddle.y -= 20;
+        break;
+    case SDLK_DOWN:
+        if (paddle.y + paddle.h < screen_height)
+            paddle.y += 20;
+        break;
+    case SDLK_w:
+        if (enemy_paddle.y > 0)
+            enemy_paddle.y -= 20;
+        break;
+    case SDLK_s:
+        if (enemy_paddle.y + enemy_paddle.h < screen_height)
+            enemy_paddle.y += 20;
+        break;
+    }
+}
+
 void Pong::handleEvents()
 {
 
@@ -129,34 +155,32 @@ void Pong::handleEvents()
     // }
 
     SDL_Event event;
+    // print("Handling events.");
+
     while (SDL_PollEvent(&event) != 0)
     {
+        // vprint(int(event.key.repeat));
+        // vprint(event.key.keysym.sym);
         if (event.type == SDL_QUIT)
         {
             isRunning = false;
-            break;
         }
-        if (event.type == SDL_KEYDOWN)
+        if (int(event.key.repeat) == 0)
         {
-            switch (event.key.keysym.sym)
+            switch (event.type)
             {
-            case SDLK_UP:
-                if (paddle.y > 0)
-                    paddle.y -= 20;
+            case SDL_KEYDOWN:
+                handleKeyEvents(event.key.keysym.sym);
+                keyStates[event.key.keysym.sym] = true;
                 break;
-            case SDLK_DOWN:
-                if (paddle.y + paddle.h < screen_height)
-                    paddle.y += 20;
+            case SDL_KEYUP:
+                handleKeyEvents(event.key.keysym.sym);
+                keyStates[event.key.keysym.sym] = false;
                 break;
-            case SDLK_w:
-                if (enemy_paddle.y > 0)
-                    enemy_paddle.y -= 20;
-                break;
-            case SDLK_s:
-                if (enemy_paddle.y + enemy_paddle.h < screen_height)
-                    enemy_paddle.y += 20;
+            default:
                 break;
             }
         }
     }
+    // print("Handling events done.");
 }

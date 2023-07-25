@@ -1,5 +1,8 @@
 #pragma once
-#include "../Game/Game.h"
+#include "Game.h"
+#include <algorithm>
+#include <cstdlib>
+#include <unordered_map>
 
 class Pong : public Game
 {
@@ -10,12 +13,15 @@ public:
     void update() override;
     void render() override;
     void handleEvents() override;
+    void handleKeyEvents(SDL_Keycode);
 
 private:
     SDL_Rect ball;
     SDL_Rect paddle;
     SDL_Rect enemy_paddle;
     SDL_Rect net;
+    std::unordered_map<SDL_Keycode, bool> keyStates;
+    
 
     int score;
     int enemy_score;

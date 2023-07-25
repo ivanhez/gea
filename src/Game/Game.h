@@ -23,8 +23,8 @@ protected:
     int counter;
     int screen_width;
     int screen_height;
-    SDL_Window* window;
-    SDL_Renderer* renderer;
+    SDL_Window *window;
+    SDL_Renderer *renderer;
     Uint32 frameStartTimestamp;
     Uint32 frameEndTimestamp;
     float frameDuration;

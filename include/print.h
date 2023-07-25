@@ -2,24 +2,31 @@
 #include <iostream>
 #define vprint(var) print(#var ": ", var)
 
-void print() {
+inline void print()
+{
     std::cout << std::endl;
 }
 
-void print(auto one, bool last = true) {
+inline void print(auto one, bool last = true)
+{
     std::cout << one;
-    if (last) {
+    if (last)
+    {
         std::cout << std::endl;
     }
 }
 
-void print(auto first, auto... args) {
+inline void print(auto first, auto... args)
+{
     print(first, false);
 
-    if constexpr (sizeof...(args) > 0) {
+    if constexpr (sizeof...(args) > 0)
+    {
         std::cout << ' ';
         print(args...);
-    } else {
+    }
+    else
+    {
         std::cout << std::endl;
     }
 }

@@ -242,6 +242,15 @@ CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//The directory containing a CMake configuration file for ENTT.
+ENTT_DIR:PATH=C:/Program Files (x86)/EnTT/lib/EnTT/cmake
+
+//The directory containing a CMake configuration file for EnTT.
+EnTT_DIR:PATH=C:/Program Files (x86)/EnTT/lib/EnTT/cmake
+
+//The directory containing a CMake configuration file for GLM.
+GLM_DIR:PATH=C:/Program Files (x86)/glm/lib/cmake/glm
+
 //Value Computed by CMake
 PONG_BINARY_DIR:STATIC=C:/Users/Admin/Desktop/pong/build
 
@@ -253,6 +262,12 @@ PONG_SOURCE_DIR:STATIC=C:/Users/Admin/Desktop/pong
 
 //The directory containing a CMake configuration file for SDL2.
 SDL2_DIR:PATH=C:/Program Files (x86)/SDL2/lib/cmake/SDL2
+
+//The directory containing a CMake configuration file for entt.
+entt_DIR:PATH=C:/Program Files (x86)/EnTT/lib/EnTT/cmake
+
+//The directory containing a CMake configuration file for glm.
+glm_DIR:PATH=C:/Program Files (x86)/glm/lib/cmake/glm
 
 
 ########################

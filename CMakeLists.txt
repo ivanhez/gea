@@ -7,6 +7,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS off)
 
 find_package(SDL2 REQUIRED)
+find_package(GLM REQUIRED)
+find_package(EnTT REQUIRED)
+
 
 file(
   GLOB_RECURSE
@@ -29,9 +32,13 @@ target_include_directories(
   PRIVATE ${PROJECT_SOURCE_DIR}/src/ECS
   PRIVATE ${PROJECT_SOURCE_DIR}/src/Scene
   PUBLIC ${SDL2_INCLUDE_DIRS}
+  PUBLIC ${GLM_INCLUDE_DIRS}
+  PUBLIC ${EnTT_INCLUDE_DIRS}
 )
 
 target_link_libraries(
   ${PROJECT_NAME}
   ${SDL2_LIBRARIES}
+  glm::glm
+  EnTT::EnTT
 )

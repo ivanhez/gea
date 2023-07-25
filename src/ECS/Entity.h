@@ -1,34 +1,37 @@
-// #pragma once
-// #include <print.h>
-// #include "Scene/Scene.h"
+#pragma once
 
+#include <entt/entt.hpp>
+#include <print.h>
+#include "../Scene/Scene.h"
 
-// Entity player = Enitity();
-// player.addComponent(new Sprite());
+class Entity
+{
+public:
+    Entity(entt::entity e, Scene *s)
+    {
+        print("Entity Created");
 
-// class Entity {
-//     public:
-//     Entity(entt:: entity e, Scene* s){
-//         print("Entity created.")
-//         handle = e;
-//         scene = s;
-//     }
-//     ~Entity(){
+        handle = e;
+        scene = s;
+    }
+    ~Entity()
+    {
+        print("Entity Destroyed");
+    }
 
-//     }
+    template <typename T>
+    auto &addComponent(auto &&...args)
+    {
+        return scene->r.emplace<T>(handle, std::forward<decltype(args)>(args)...);
+    }
 
-//     template<typename T, typename ...Args>
-//     T& addComponent(Args&&... args){
-//         return scene->r.emplace<T>(handle, std::forward<Args>(args)...)
-//     }
-    
+    template <typename T>
+    void removeComponent()
+    {
+        scene->r.remove<T>(handle);
+    }
 
-//     template<typename T>
-//     removeComponent(){
-//         scene->r.remove<T>(handle)
-//     }
-    
-//     pritvate:
-//         entt::entity handle;
-//         Scene* scene;
-// };
+private:
+    entt::entity handle;
+    Scene *scene;
+};

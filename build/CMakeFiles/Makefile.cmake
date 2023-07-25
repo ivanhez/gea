@@ -7,6 +7,9 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
+  "C:/Program Files (x86)/EnTT/lib/EnTT/cmake/EnTTConfig.cmake"
+  "C:/Program Files (x86)/EnTT/lib/EnTT/cmake/EnTTConfigVersion.cmake"
+  "C:/Program Files (x86)/EnTT/lib/EnTT/cmake/EnTTTargets.cmake"
   "C:/Program Files (x86)/SDL2/lib/cmake/SDL2/SDL2Config.cmake"
   "C:/Program Files (x86)/SDL2/lib/cmake/SDL2/SDL2ConfigVersion.cmake"
   "C:/Program Files (x86)/SDL2/lib/cmake/SDL2/SDL2Targets-noconfig.cmake"
@@ -18,6 +21,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "C:/Program Files (x86)/SDL2/lib/cmake/SDL2/SDL2testTargets-noconfig.cmake"
   "C:/Program Files (x86)/SDL2/lib/cmake/SDL2/SDL2testTargets.cmake"
   "C:/Program Files (x86)/SDL2/lib/cmake/SDL2/sdlfind.cmake"
+  "C:/Program Files (x86)/glm/lib/cmake/glm/glmConfig.cmake"
+  "C:/Program Files (x86)/glm/lib/cmake/glm/glmConfigVersion.cmake"
   "C:/Program Files/CMake/share/cmake-3.27/Modules/CMakeCInformation.cmake"
   "C:/Program Files/CMake/share/cmake-3.27/Modules/CMakeCXXInformation.cmake"
   "C:/Program Files/CMake/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake"
