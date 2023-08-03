@@ -20,8 +20,8 @@ void Pong::setup()
     net.w = 4;
     net.h = screen_height;
 
-    ball.x = 20;
-    ball.y = 20;
+    ball.x = (screen_width / 2) - 10;
+    ball.y = (screen_height / 2) - 10;
     ball.w = 20;
     ball.h = 20;
 
@@ -51,7 +51,7 @@ void Pong::update()
     {
         ball_speed_x = 4;
         ball_speed_y = 4;
-        ball_speed_x *= -1;
+        ball_speed_x *= 1;
         ball.x = (screen_width / 2) - 10;
         ball.y = (screen_height / 2) - 10;
         score++;
