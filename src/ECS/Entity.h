@@ -9,14 +9,14 @@ class Entity
 public:
     Entity(entt::entity e, Scene *s)
     {
-        // print("Entity Created");
+        print("Entity Created");
 
         handle = e;
         scene = s;
     }
     ~Entity()
     {
-        // print("Entity Destroyed");
+        print("Entity Destroyed");
     }
 
     template <typename T>
@@ -29,6 +29,12 @@ public:
     void removeComponent()
     {
         scene->r.remove<T>(handle);
+    }
+
+    template <typename T>
+    auto &get(auto &&...args)
+    {
+        return scene->r.get_or_emplace<T>(handle, std::forward<decltype(args)>(args)...);
     }
 
 private:
