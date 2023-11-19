@@ -2,6 +2,7 @@
 
 #include <glm/glm.hpp>
 #include <string>
+#include "../Game/Graphics/PixelShader.h"
 
 struct NameComponent
 {
@@ -19,4 +20,17 @@ struct SpeedComponent
 {
     int x;
     int y;
+};
+
+struct SpriteComponent
+{
+    std::string name;
+    int xIndex = 0;
+    int yIndex = 0;
+    int size = 48;
+    int animationFrames = 0;
+    int animationDuration = 0;
+    PixelShader shader = {nullptr, ""};
+
+    Uint32 lastUpdate = 0;
 };

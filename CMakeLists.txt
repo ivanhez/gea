@@ -38,10 +38,11 @@ add_executable(
 target_include_directories(
   ${PROJECT_NAME}
   PRIVATE ${PROJECT_SOURCE_DIR}/include
-  PRIVATE ${PROJECT_SOURCE_DIR}/src/Game
-  PRIVATE ${PROJECT_SOURCE_DIR}/src/Pong
-  PRIVATE ${PROJECT_SOURCE_DIR}/src/ECS
-  PRIVATE ${PROJECT_SOURCE_DIR}/src/Scene
+  PUBLIC ${PROJECT_SOURCE_DIR}/assets
+  PUBLIC ${PROJECT_SOURCE_DIR}/src/Game
+  PUBLIC ${PROJECT_SOURCE_DIR}/src/Pong
+  PUBLIC ${PROJECT_SOURCE_DIR}/src/ECS
+  PUBLIC ${PROJECT_SOURCE_DIR}/src/Scene
   PUBLIC ${SDL2_INCLUDE_DIRS}
   PUBLIC ${SDL2IMAGE_INCLUDE_DIRS}
   PUBLIC ${GLM_INCLUDE_DIRS}
@@ -51,6 +52,7 @@ target_include_directories(
 target_link_libraries(
   ${PROJECT_NAME}
   ${SDL2_LIBRARIES}
+  ${SDL2_IMAGE_LIBRARIES}
   SDL2_image::SDL2_image
   glm::glm
   EnTT::EnTT

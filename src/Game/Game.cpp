@@ -1,12 +1,11 @@
 #include <SDL2/SDL.h>
-#include "print.h"
-#include "isDefined.h"
+#include <print.h>
 #include "Game.h"
 
-Game::Game(const char* title, int width, int height)
+Game::Game(const char *title, int width, int height)
 {
   int maxFPS = 60;
-  frameDuration = (1.0f / maxFPS) * 1000.0f;  // how many mili seconds in one frame
+  frameDuration = (1.0f / maxFPS) * 1000.0f; // how many mili seconds in one frame
 
   // initial frame count variables
   frameCount = 0;
@@ -14,10 +13,10 @@ Game::Game(const char* title, int width, int height)
   FPS = 0;
 
   SDL_Init(SDL_INIT_EVERYTHING);
-  
+
   window = SDL_CreateWindow(title, 200, 50, width, height, 0);
   renderer = SDL_CreateRenderer(window, 0, 0);
-  
+
   SDL_SetRenderDrawColor(renderer, 0, 0, 0, 1);
   print("Game Start!");
 
@@ -31,17 +30,17 @@ Game::Game(const char* title, int width, int height)
 }
 
 Game::~Game()
-{}
+{
+}
 
 void Game::setup()
 {
-  isDefined(currentScene, "CurrentScene is not initialized");
   currentScene->setup();
 }
 
 void Game::frameStart()
 {
-//   std::cout << "---- Frame: " << frameCount << " ----" << std::endl;
+  // std::cout << "---- Frame: " << frameCount << " ----" << std::endl;
   frameStartTimestamp = SDL_GetTicks();
   if (frameEndTimestamp)
   {
@@ -63,7 +62,7 @@ void Game::frameEnd()
   {
     SDL_Delay(frameDuration - actualFrameDuration);
   }
-  
+
   frameCount++;
   // Update FPS counter every second
   Uint32 currentTime = SDL_GetTicks();
@@ -74,7 +73,7 @@ void Game::frameEnd()
     frameCount = 0;
   }
 
-//   print();
+  // print();
 }
 
 void Game::handleEvents()
@@ -100,11 +99,11 @@ void Game::render()
 {
   SDL_SetRenderDrawColor(renderer, 0, 0, 0, 1);
   SDL_RenderClear(renderer);
-  
+
   currentScene->render(renderer);
 
   SDL_RenderPresent(renderer);
-//   vprint(FPS);
+  // vprint(FPS);
 }
 
 void Game::clean()
@@ -122,24 +121,26 @@ bool Game::running()
 
 void Game::run()
 {
-    setup();
+  setup();
 
-    while (running())
-    {
-      frameStart();
-      handleEvents();
-      update();
-      render();
-      frameEnd();
-    }
+  while (running())
+  {
+    frameStart();
+    handleEvents();
+    update();
+    render();
+    frameEnd();
+  }
 
-    clean();
+  clean();
 }
 
-void Game::setScene(std::unique_ptr<Scene> newScene) {
-  currentScene = std::move(newScene);
+void Game::setScene(Scene *newScene)
+{
+  currentScene = newScene;
 }
 
-Scene* Game::getCurrentScene() const {
-  return currentScene.get();
+Scene *Game::getCurrentScene() const
+{
+  return currentScene;
 }
