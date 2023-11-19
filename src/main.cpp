@@ -3,7 +3,7 @@
 
 int main(int argv, char **args)
 {
-    Pong pong = Pong("pong", 800, 600);
+    Pong pong = Pong();
 
     pong.run();
 
