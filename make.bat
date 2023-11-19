@@ -1,3 +1,3 @@
 cd build
-make
+mingw32-make
 copy ..\SDL2.dll .\ 

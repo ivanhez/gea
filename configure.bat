@@ -1,1 +1,1 @@
-cmake -G "Unix Makefiles" -S . -B build
+cmake -G "MinGW Makefiles" -S . -B build

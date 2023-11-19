@@ -6,7 +6,18 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS off)
 
+if(NOT PNG AND WIN32 AND NOT MSVC)
+  SET(PNG_LIBRARY "C:/Program Files (x86)/libpng")
+  SET(PNG_INCLUDE_DIR "C:/Program Files (x86)/libpng/include")
+endif()
+
+if(NOT JPEG AND WIN32 AND NOT MSVC)
+  SET(JPEG_LIBRARY "C:/Program Files (x86)/jpeg")
+  SET(JPEG_INCLUDE_DIR "C:/Program Files (x86)/jpeg/include")
+endif()
+
 find_package(SDL2 REQUIRED)
+find_package(SDL2_image REQUIRED)
 find_package(GLM REQUIRED)
 find_package(EnTT REQUIRED)
 
@@ -32,6 +43,7 @@ target_include_directories(
   PRIVATE ${PROJECT_SOURCE_DIR}/src/ECS
   PRIVATE ${PROJECT_SOURCE_DIR}/src/Scene
   PUBLIC ${SDL2_INCLUDE_DIRS}
+  PUBLIC ${SDL2IMAGE_INCLUDE_DIRS}
   PUBLIC ${GLM_INCLUDE_DIRS}
   PUBLIC ${EnTT_INCLUDE_DIRS}
 )
@@ -39,6 +51,7 @@ target_include_directories(
 target_link_libraries(
   ${PROJECT_NAME}
   ${SDL2_LIBRARIES}
+  SDL2_image::SDL2_image
   glm::glm
   EnTT::EnTT
 )
