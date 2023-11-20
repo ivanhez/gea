@@ -12,33 +12,38 @@
 Scene::Scene(const std::string &name)
     : name(name)
 {
-    print("Scene ", name, "constructed!");
+    // print("Scene ", name, "constructed!");
 
     world = new Entity(r.create(), this);
     world->addComponent<TilemapComponent>();
+    world->addComponent<WorldComponent>(800 * 5, 600 * 5);
+
+    mainCamera = new Entity(r.create(), this);
+    mainCamera->addComponent<TransformComponent>(0, 0);
+    mainCamera->addComponent<CameraComponent>(5, 800, 600);
+
+    player = new Entity(r.create(), this);
+    player->addComponent<TransformComponent>(0, 0);
+    player->addComponent<SpeedComponent>(0, 0);
 }
 
 Scene::~Scene()
 {
-    print("Scene Destroyed!");
+    // print("Scene Destroyed!");
 }
 
 Entity Scene::createEntity(const std::string &name, int x, int y)
 {
     Entity entity = {r.create(), this};
     entity.addComponent<NameComponent>(name);
-    entity.addComponent<TransformComponent>(
-        glm::vec2(x, y)
-        // glm::vec2(1, 1),
-        // 0.0d
-    );
+    entity.addComponent<TransformComponent>(x, y);
 
     return entity;
 }
 
 void Scene::setup()
 {
-    print("Scene Setup");
+    // print("Scene Setup");
 
     for (auto sys : setupSystems)
     {
@@ -48,7 +53,7 @@ void Scene::setup()
 
 void Scene::update(double dT)
 {
-    print("Scene Update");
+    // print("Scene Update");
 
     for (auto sys : updateSystems)
     {
@@ -58,7 +63,7 @@ void Scene::update(double dT)
 
 void Scene::render(SDL_Renderer *renderer)
 {
-    print("Scene Render");
+    // print("Scene Render");
 
     for (auto sys : renderSystems)
     {
@@ -68,7 +73,7 @@ void Scene::render(SDL_Renderer *renderer)
 
 void Scene::processEvents(SDL_Event event)
 {
-    print("Scene Events");
+    // print("Scene Events");
 
     for (auto sys : eventSystems)
     {

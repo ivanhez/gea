@@ -25,6 +25,9 @@ public:
 
     entt::registry r;
     Entity *world;
+    Entity *mainCamera;
+    Entity *player;
+    Entity *enemy;
 
     Entity createEntity(
         const std::string &name = "NO NAME",

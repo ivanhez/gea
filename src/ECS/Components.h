@@ -1,6 +1,5 @@
 #pragma once
 
-#include <glm/glm.hpp>
 #include <string>
 #include <vector>
 #include "../ECS/Entity.h"
@@ -15,9 +14,8 @@ struct NameComponent
 
 struct TransformComponent
 {
-    glm::ivec2 position;
-    // glm::vec2 scale;
-    // double rotation;
+    int x;
+    int y;
 };
 
 struct SpeedComponent
@@ -45,4 +43,17 @@ struct TilemapComponent
     int width;
     int height;
     int tileSize;
+};
+
+struct CameraComponent
+{
+    int zoom = 1;
+    int vw = 0;
+    int vh = 0;
+};
+
+struct WorldComponent
+{
+    int width = 0;
+    int height = 0;
 };
