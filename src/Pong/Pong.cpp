@@ -42,6 +42,7 @@ Scene *Pong::createGameplayScene()
     scene->addEventSystem<PlayerInputEventSystem>();
     scene->addUpdateSystem<PlayerSpriteUpdateSystem>();
     scene->addUpdateSystem<MovementUpdateSystem>();
+    scene->addUpdateSystem<CameraFollowUpdateSystem>();
 
     scene->addSetupSystem<TilemapSetupSystem>(renderer);
     scene->addSetupSystem<AutoTilingSetupSystem>();

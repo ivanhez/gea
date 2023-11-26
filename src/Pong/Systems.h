@@ -95,3 +95,9 @@ class PlayerSpriteUpdateSystem : public UpdateSystem
 public:
   void run(double dT) override;
 };
+
+class CameraFollowUpdateSystem : public UpdateSystem
+{
+public:
+  void run(double dT) override;
+};
