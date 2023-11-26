@@ -22,7 +22,6 @@ struct SpeedComponent
 {
     int x;
     int y;
-    int speed = 200;
 };
 
 struct SpriteComponent
@@ -57,13 +56,4 @@ struct WorldComponent
 {
     int width = 0;
     int height = 0;
-};
-
-struct BoxColliderComponent
-{
-    int xo = 0;
-    int yo = 0;
-    int w = 0;
-    int h = 0;
-    SDL_Color color = {255, 255, 255};
 };
