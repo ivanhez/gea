@@ -23,9 +23,9 @@ Scene::Scene(const std::string &name)
     mainCamera->addComponent<CameraComponent>(5, 800, 600);
 
     player = new Entity(r.create(), this);
-    /* player->addComponent<TransformComponent>((800 * 5)/2 - 48/2, (600 * 5)/2 - 48/2); */
     player->addComponent<TransformComponent>(500, 500);
     player->addComponent<SpeedComponent>(0, 0);
+    player->addComponent<BoxColliderComponent>(16, 16, 16, 16);
 }
 
 Scene::~Scene()
@@ -54,7 +54,7 @@ void Scene::setup()
 
 void Scene::update(double dT)
 {
-    print("Scene Update");
+    // print("Scene Update");
 
     for (auto sys : updateSystems)
     {
@@ -64,7 +64,7 @@ void Scene::update(double dT)
 
 void Scene::render(SDL_Renderer *renderer)
 {
-    print("Scene Render");
+    // print("Scene Render");
 
     for (auto sys : renderSystems)
     {
@@ -74,7 +74,7 @@ void Scene::render(SDL_Renderer *renderer)
 
 void Scene::processEvents(SDL_Event event)
 {
-    print("Scene Events");
+    // print("Scene Events");
 
     for (auto sys : eventSystems)
     {

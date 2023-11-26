@@ -30,17 +30,10 @@ Scene *Pong::createGameplayScene()
         PixelShader{nullptr, ""},
         SDL_GetTicks());
 
-    Entity enemy = scene->createEntity("cat1", 0, 0);
-    auto &s = enemy.addComponent<SpriteComponent>(
-        "Sprites/Cat/SpriteSheet.png",
-        0, 0,
-        48,
-        8,
-        1000);
-    s.lastUpdate = SDL_GetTicks();
-
     scene->addEventSystem<PlayerInputEventSystem>();
     scene->addUpdateSystem<PlayerSpriteUpdateSystem>();
+    scene->addUpdateSystem<EnemySpriteUpdateSystem>();
+    scene->addUpdateSystem<TileCollisionUpdateSystem>();
     scene->addUpdateSystem<MovementUpdateSystem>();
     scene->addUpdateSystem<CameraFollowUpdateSystem>();
 
@@ -48,9 +41,14 @@ Scene *Pong::createGameplayScene()
     scene->addSetupSystem<AutoTilingSetupSystem>();
     scene->addRenderSystem<TilemapRenderSystem>();
 
+    scene->addSetupSystem<EnemySpawnSystem>();
     scene->addSetupSystem<SpriteSetupSystem>(renderer);
     scene->addRenderSystem<SpriteRenderSystem>();
     scene->addUpdateSystem<SpriteUpdateSystem>();
+    scene->addRenderSystem<BoxColliderRenderSystem>();
+
+    scene->addUpdateSystem<EnemyMoveSystem>();
+    // scene->addRenderSystem<TileColliderRenderSystem>();
 
     return scene;
 }

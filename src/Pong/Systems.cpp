@@ -1,3 +1,4 @@
+#include <SDL_render.h>
 #include <cstdint>
 #include <print.h>
 #include <FastNoise.h>
@@ -12,6 +13,7 @@
 #include "../ECS/Entity.h"
 #include "../ECS/Components.h"
 #include "../Game/Graphics/TextureManager.h"
+// #include "../Game/ScriptingManager.h"
 
 SpriteSetupSystem::SpriteSetupSystem(SDL_Renderer *renderer)
     : renderer(renderer) {}
@@ -105,6 +107,8 @@ TilemapSetupSystem::~TilemapSetupSystem()
 
 void TilemapSetupSystem::run()
 {
+    const auto player = scene->player->get<TransformComponent>();
+    const auto cameraZoom = scene->mainCamera->get<CameraComponent>().zoom;
     auto &tilemapComponent = scene->world->get<TilemapComponent>();
     tilemapComponent.width = 50;
     tilemapComponent.height = 38;
@@ -125,18 +129,16 @@ void TilemapSetupSystem::run()
     Terrain grass{grassTexture};
     Terrain water{waterTexture};
 
+    int centerX = player.x / cameraZoom / tilemapComponent.tileSize;
+    int centerY = player.y / cameraZoom / tilemapComponent.tileSize;
+
     for (int y = 0; y < tilemapComponent.height; y++)
     {
         for (int x = 0; x < tilemapComponent.width; x++)
         {
-            float factor = noise.GetNoise(
-                static_cast<float>(x + offsetX) * zoom,
-                static_cast<float>(y + offsetY) * zoom);
-
             int index = y * tilemapComponent.width + x;
             Tile &tile = tilemapComponent.tilemap[index];
-
-            if (factor < 0.5)
+            if (std::abs(centerX - x) < 5 && std::abs(centerY - y) < 5)
             {
                 tile.up = grass;
                 tile.down = water;
@@ -144,8 +146,22 @@ void TilemapSetupSystem::run()
             }
             else
             {
-                tile.up = water;
-                tile.needsAutoTiling = false;
+                float factor = noise.GetNoise(
+                    static_cast<float>(x + offsetX) * zoom,
+                    static_cast<float>(y + offsetY) * zoom);
+
+                if (factor < 0.5)
+                {
+                    tile.up = grass;
+                    tile.down = water;
+                    tile.needsAutoTiling = true;
+                }
+                else
+                {
+                    tile.up = water;
+                    tile.needsAutoTiling = false;
+                    tile.isWalkable = false;
+                }
             }
         }
     }
@@ -359,23 +375,22 @@ void PlayerInputEventSystem::run(SDL_Event event)
 {
     auto &playerMovement = scene->player->get<SpeedComponent>();
     const auto cameraZoom = scene->mainCamera->get<CameraComponent>().zoom;
-    int speed = 200;
 
     if (event.type == SDL_KEYDOWN)
     {
         switch (event.key.keysym.sym)
         {
         case SDLK_LEFT:
-            playerMovement.x = -speed;
+            playerMovement.x = -playerMovement.speed;
             break;
         case SDLK_RIGHT:
-            playerMovement.x = speed;
+            playerMovement.x = playerMovement.speed;
             break;
         case SDLK_UP:
-            playerMovement.y = -speed;
+            playerMovement.y = -playerMovement.speed;
             break;
         case SDLK_DOWN:
-            playerMovement.y = speed;
+            playerMovement.y = playerMovement.speed;
             break;
         }
     }
@@ -469,5 +484,268 @@ void CameraFollowUpdateSystem::run(double dT)
     if (py > 0 && py < worldComponent.height - cameraComponent.vh)
     {
         cameraTransform.y = py;
+    }
+}
+
+void BoxColliderRenderSystem::run(SDL_Renderer *r)
+{
+    const auto cameraZoom = scene->mainCamera->get<CameraComponent>().zoom;
+    const auto cameraTransform = scene->mainCamera->get<TransformComponent>();
+    const int cx = cameraTransform.x;
+    const int cy = cameraTransform.y;
+
+    auto &registry = scene->r;
+    auto view = registry.view<TransformComponent, BoxColliderComponent>();
+
+    for (entt::entity entity : view)
+    {
+        auto &entityTransform = view.get<TransformComponent>(entity);
+        auto &entityBoxCollider = view.get<BoxColliderComponent>(entity);
+        const int xo = entityBoxCollider.xo * cameraZoom;
+        const int yo = entityBoxCollider.yo * cameraZoom;
+
+        SDL_SetRenderDrawColor(r, entityBoxCollider.color.r, entityBoxCollider.color.g, entityBoxCollider.color.b, 255);
+
+        SDL_Rect entityRect = {
+            static_cast<int>(entityTransform.x - cx + xo),
+            static_cast<int>(entityTransform.y - cy + yo),
+            entityBoxCollider.w * cameraZoom,
+            entityBoxCollider.h * cameraZoom};
+
+        // SDL_RenderDrawRect(r, &entityRect);
+
+        for (entt::entity otherEntity : view)
+        {
+            if (entity != otherEntity)
+            {
+                auto &otherTransform = view.get<TransformComponent>(otherEntity);
+                auto &otherBoxCollider = view.get<BoxColliderComponent>(otherEntity);
+
+                SDL_Rect otherRect = {
+                    static_cast<int>(otherTransform.x - cx + (otherBoxCollider.xo * cameraZoom)),
+                    static_cast<int>(otherTransform.y - cy + (otherBoxCollider.yo * cameraZoom)),
+                    otherBoxCollider.w * cameraZoom,
+                    otherBoxCollider.h * cameraZoom};
+
+                if (SDL_HasIntersection(&entityRect, &otherRect) == SDL_TRUE)
+                {
+
+                    entityTransform.x = entityTransform.x - 50;
+                    entityTransform.y = entityTransform.y - 50;
+                }
+            }
+        }
+    }
+}
+
+void TileColliderRenderSystem::run(SDL_Renderer *r)
+{
+    auto &tilemapComponent = scene->world->get<TilemapComponent>();
+    int width = tilemapComponent.width;
+    int height = tilemapComponent.height;
+    int size = tilemapComponent.tileSize;
+    const auto &c = scene->mainCamera->get<CameraComponent>();
+    const auto &cameraTransform = scene->mainCamera->get<TransformComponent>();
+    int cx = cameraTransform.x;
+    int cy = cameraTransform.y;
+
+    // Calculate the range of tiles that should be visible
+    int startX = std::max(0, cx / (size * c.zoom));
+    int startY = std::max(0, cy / (size * c.zoom));
+    int endX = std::min(width, (cx + c.vw) / (size * c.zoom) + 1);
+    int endY = std::min(height, (cy + c.vh) / (size * c.zoom) + 1);
+
+    for (int y = startY; y < endY; y++)
+    {
+        for (int x = startX; x < endX; x++)
+        {
+            Tile &tile = tilemapComponent.tilemap[y * width + x];
+
+            SDL_Rect rect = {
+                x * size * c.zoom - cx,
+                y * size * c.zoom - cy,
+                size * c.zoom,
+                size * c.zoom};
+
+            if (tile.isWalkable)
+            {
+                SDL_SetRenderDrawColor(r, 0, 0, 255, 255);
+                SDL_RenderDrawRect(r, &rect);
+            }
+            else
+            {
+                SDL_SetRenderDrawColor(r, 0, 0, 255, 55);
+                SDL_RenderFillRect(r, &rect);
+            }
+        }
+    }
+}
+
+void TileCollisionUpdateSystem::run(double dT)
+{
+    const auto playerPosition = scene->player->get<TransformComponent>();
+    const auto playerCollider = scene->player->get<BoxColliderComponent>();
+    const auto world = scene->world->get<WorldComponent>();
+    const auto cameraZoom = scene->mainCamera->get<CameraComponent>().zoom;
+    auto &playerMovement = scene->player->get<SpeedComponent>();
+    const auto tilemapComponent = scene->world->get<TilemapComponent>();
+
+    if (playerMovement.x == 0 && playerMovement.y == 0)
+    {
+        return;
+    }
+    const int colliderPositionX = playerPosition.x + playerCollider.xo * cameraZoom;
+    const int colliderPositionY = playerPosition.y + playerCollider.yo * cameraZoom;
+    const int colliderSize = playerCollider.w * cameraZoom; // squared
+    const int tileSize = tilemapComponent.tileSize * cameraZoom;
+
+    // Calculate future position based on current position and speed.
+    int futureX = colliderPositionX + playerMovement.x * dT;
+    int futureY = colliderPositionY + playerMovement.y * dT;
+    int futureRightX = futureX + colliderSize;
+    int futureBottomY = futureY + colliderSize;
+
+    if (futureX <= 0 || futureY <= 0 || futureRightX >= world.width || futureBottomY >= world.height)
+    {
+        playerMovement.x = 0;
+        playerMovement.y = 0;
+        return;
+    }
+
+    // Convert the future positions from pixels to tile coordinates.
+    std::vector<std::pair<int, int>> futureTiles = {
+        {futureX / tileSize, futureY / tileSize},           // top left corner
+        {futureRightX / tileSize, futureY / tileSize},      // top right corner
+        {futureX / tileSize, futureBottomY / tileSize},     // bottom left corner
+        {futureRightX / tileSize, futureBottomY / tileSize} // bottom right corner
+    };
+
+    for (const auto &[tileX, tileY] : futureTiles)
+    {
+        // Get the tile at the future position.
+        const Tile &tile = tilemapComponent.tilemap[tileY * tilemapComponent.width + tileX];
+
+        // If the tile is not walkable, set the speed to 0.
+
+        if (!tile.isWalkable)
+        {
+            playerMovement.speed = 450;
+            // return;
+        }
+        else
+        {
+            playerMovement.speed = 200;
+            // return;
+        }
+    }
+}
+
+void EnemySpawnSystem::run()
+{
+    // ScriptingManager::init();
+
+    // ScriptingManager::runScriptFile("Scripts/enemySpawn.lua");
+
+    // sol::table enemies = ScriptingManager::lua["enemies"];
+
+    // enemies.for_each([&](sol::object const &key, sol::object const &value)
+    //                  {
+    //     sol::table enemy = value.as<sol::table>();
+    //     float x = enemy["x"];
+    //     float y = enemy["y"];
+    //     int id = key.as<int>();
+
+    Entity *enemyEntity = new Entity(scene->r.create(), scene);
+    enemyEntity->addComponent<TransformComponent>(300, 300);
+    enemyEntity->addComponent<SpriteComponent>("Sprites/Cat/SpriteSheet.png", 0, 5, 48, 8, 1000);
+    enemyEntity->addComponent<EnemyComponent>(1);
+    enemyEntity->addComponent<SpeedComponent>(0, 0);
+    enemyEntity->addComponent<BoxColliderComponent>(16, 16, 16, 16);
+
+    // ScriptingManager::runScriptFile("Scripts/enemyMove.lua");
+}
+
+void EnemyMoveSystem::run(double dT)
+{
+    int speed = 100;
+    const auto playerPosition = scene->player->get<TransformComponent>();
+
+    auto view = scene->r.view<EnemyComponent, TransformComponent>();
+
+    for (auto entity : view)
+    {
+        auto &transformComponent = view.get<TransformComponent>(entity);
+        const auto &enemyComponent = view.get<EnemyComponent>(entity);
+
+        float x = 0, y = 0;
+
+        if (transformComponent.x < playerPosition.x)
+        {
+            x = speed;
+        }
+        else if (transformComponent.x > playerPosition.x)
+        {
+            x = -speed;
+        }
+
+        if (transformComponent.y < playerPosition.y)
+        {
+            y = speed;
+        }
+        else if (transformComponent.y > playerPosition.y)
+        {
+            y = -speed;
+        }
+
+        transformComponent.x += x * dT;
+        transformComponent.y += y * dT;
+    }
+}
+
+void EnemySpriteUpdateSystem::run(double dT)
+{
+    auto view = scene->r.view<EnemyComponent, TransformComponent, SpriteComponent>();
+
+    for (auto entity : view)
+    {
+        auto &enemySpeed = view.get<TransformComponent>(entity);
+        auto &enemySprite = view.get<SpriteComponent>(entity);
+
+        if (enemySpeed.x < 0)
+        {
+            enemySprite.yIndex = 7;
+        }
+        else if (enemySpeed.x > 0)
+        {
+            enemySprite.yIndex = 6;
+        }
+        else if (enemySpeed.y < 0)
+        {
+            enemySprite.yIndex = 5;
+        }
+        else if (enemySpeed.y > 0)
+        {
+            enemySprite.yIndex = 4;
+        }
+        else
+        {
+
+            if (enemySprite.yIndex == 7)
+            {
+                enemySprite.yIndex = 2;
+            }
+            else if (enemySprite.yIndex == 6)
+            {
+                enemySprite.yIndex = 3;
+            }
+            else if (enemySprite.yIndex == 5)
+            {
+                enemySprite.yIndex = 1;
+            }
+            else if (enemySprite.yIndex == 4)
+            {
+                enemySprite.yIndex = 0;
+            }
+        }
     }
 }
